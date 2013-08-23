@@ -1,0 +1,34 @@
+<?php
+namespace Maxposter\DacTestBundle\Entity\TestManyToMany;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Сущность определяющая настройки мкдд
+ *
+ * @ORM\Entity()
+ * @ORM\Table(name="test_dac_m2m_side_one")
+ */
+class SideOne
+{
+    /**
+     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="SideTwo", inversedBy="sideOne")
+     * @ORM\JoinTable(name="test_dac_m2m_sides_one_two")
+     */
+    private $sideTwo;
+
+    public function __construct()
+    {
+        $this->sideTwo = new ArrayCollection();
+    }
+}
